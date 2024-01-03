@@ -1,0 +1,79 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type IsSuccessResponseType {
+  isSuccess: Boolean!
+}
+
+type IngredientType {
+  name: String!
+  quantity: String!
+}
+
+type RecipeType {
+  id: Int!
+  title: String!
+  ingredients: [IngredientType!]!
+  directions: String!
+  tags: [String!]!
+}
+
+type PageInfoType {
+  limit: Float!
+  hasNextPage: Boolean!
+  nextPageCursor: Int
+  hasPrevPage: Boolean!
+  prevPageCursor: Int
+}
+
+type RecipeConnectionType {
+  nodes: [RecipeType!]!
+  pageInfo: PageInfoType!
+}
+
+type TagType {
+  id: Int!
+  name: String!
+}
+
+type TagConnectionType {
+  nodes: [TagType!]!
+  pageInfo: PageInfoType!
+}
+
+type Query {
+  recipesConnection(limit: Int = 10, nextPageCursor: Int, prevPageCursor: Int): RecipeConnectionType!
+  recipe(id: Int!): RecipeType!
+  recipesByTitle(limit: Int = 10, nextPageCursor: Int, prevPageCursor: Int, title: String!): RecipeConnectionType!
+  recipesByTags(limit: Int = 10, nextPageCursor: Int, prevPageCursor: Int, tags: [String!]!): RecipeConnectionType!
+  tagsConnection(limit: Int = 10, nextPageCursor: Int, prevPageCursor: Int): TagConnectionType!
+  tag(id: Int!): TagType!
+  tagsPrediction(limit: Int = 10, nextPageCursor: Int, prevPageCursor: Int, name: String!): TagConnectionType!
+}
+
+type Mutation {
+  createRecipe(recipe: CreateRecipeInput!): RecipeType!
+  updateRecipe(recipe: UpdateRecipeInput!): RecipeType!
+  deleteRecipe(id: Int!): IsSuccessResponseType!
+}
+
+input CreateRecipeInput {
+  title: String!
+  directions: String!
+  tags: [String!]!
+  ingredients: [IngredientInput!]!
+}
+
+input IngredientInput {
+  name: String!
+  quantity: String!
+}
+
+input UpdateRecipeInput {
+  id: Int!
+  title: String
+  directions: String
+  tags: [String!]
+  ingredients: [IngredientInput!]
+}
