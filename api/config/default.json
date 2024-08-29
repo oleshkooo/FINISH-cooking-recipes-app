@@ -1,0 +1,19 @@
+{
+    "port": 4000,
+    "auth": {
+        "saltOrRounds": 10,
+        "secret": "secret"
+    },
+    "db": {
+        "url": "./local/db.sqlite"
+    },
+    "image": {
+        "compression": {
+            "quality": 80,
+            "size": 200
+        },
+        "cache": {
+            "ttl": "10s"
+        }
+    }
+}
